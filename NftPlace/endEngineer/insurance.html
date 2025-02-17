@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./public/css/newindex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>车辆管理系统</title>
+    <style>
+        /* 表格整体样式 */
+        #scheme-table {
+            width: 113%;
+            /* 表格宽度 */
+            border-collapse: collapse;
+            /* 合并单元格边框 */
+            margin-top: 20px;
+            /* 表格上方的外边距 */
+            font-family: Arial, sans-serif;
+            /* 字体 */
+        }
+
+        /* 表头样式 */
+        #scheme-table thead th {
+            background-color: gray;
+            /* 更新后的灰色背景 */
+            color: black;
+            /* 表头文字颜色 */
+            padding: 14px;
+            /* 表头内边距 */
+            text-align: left;
+            /* 文本对齐方式 */
+            border-bottom: 1px solid #ddd;
+            /* 表头底部边框 */
+        }
+
+        /* 表格内容样式 */
+        #scheme-table tbody td {
+            border-bottom: 1px solid #ddd;
+            /* 单元格底部边框 */
+            padding: 5px;
+            /* 单元格内边距 */
+            text-align: left;
+            /* 文本对齐方式 */
+        }
+
+        /* 鼠标悬停样式 */
+        #scheme-table tbody tr:hover {
+            background-color: #f5f5f5;
+            /* 鼠标悬停时的背景颜色 */
+            cursor: pointer;
+            /* 鼠标悬停时的光标样式 */
+        }
+
+        /* 奇数行背景颜色 */
+        #scheme-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+            /* 奇数行背景颜色 */
+        }
+
+        /* 偶数行背景颜色 */
+        #scheme-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+            /* 偶数行背景颜色 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <div class="head-left">
+            <img src="">
+        </div>
+        <div class="head-right">
+            <div class="head-right-top">
+                <ul>
+                    <li><a href="login.html">退出</a></li>
+                    <li>欢迎使用车辆管理系统!</li>
+                    <li>登录用户</li>
+                    <li></li>
+                    <input type="button" value="获取金钱">
+                </ul>
+            </div>
+            <div class="head-right-bottom">
+                <ul>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-left">
+        <br>
+        <div class="left_1">
+            <ul>
+                <li><a href="newindex.html">首页</a></li>
+                </li>
+            </ul>
+            <ul>
+                <li><a href="car.html">车辆信息</a></li>
+
+                </li>
+            </ul>
+        </div>
+        <div class="left_2">
+            <ul>
+                <li><a href="insurance.html" class="selected">保险信息</a></li>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content_right">
+        <div class="control_right_top">
+            <img src="">
+            <span>当前位置&gt;&gt;保险信息</span>
+            <hr style="width: 100%;">
+        </div>
+        <div class="content_right_content">
+            <span><img src="">&nbsp;搜索&nbsp;&nbsp;&nbsp;保险名称:<input type="text"
+                    placeholder="输入设备名称">&nbsp;&nbsp;保险类型:<select>
+                    <option>车险</option>
+                    <option>人险</option>
+                    <option></option>
+                    <option></option>
+                </select>&nbsp;&nbsp;<button type="button">查询</button></span>
+        </div>
+        <!-- 添加保险 -->
+        <div class="content_right_content1">
+            <ul>
+                <li><a onclick="addInsurance()" id="addVehicleLink">添加保险</a></li>
+            </ul>
+        </div>
+
+        <div class="content_table">
+            <table id="scheme-table">
+                <thead>
+                    <tr>
+                        <th>保险公司:</th>
+                        <th>保险名称:</th>
+                        <th>保险赔付金额:</th>
+                        <th>保险在售状态:</th>
+                        <th>价格:</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="scheme-table tbody"></tbody>
+            </table>
+            <span><img src="">|<img src=""></span>
+            <span style="float: right; margin-right: 200px;"><button type="button">首页</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">1</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">2</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">3</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">...</button>
+                <button type="button">下一页</button>
+                <button type="button">尾页</button>
+            </span>
+        </div>
+        <main>
+            <!-- 弹框内容添加保险 -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModalBtn">&times;</span>
+                    <h2>保险信息</h2>
+                    <p>保险名称: <span id="vehicleNumber"><input type="text" id="schemeName" /></span></p>
+                    <p>到期时间: <span id="vehicleName"><input type="text" id="lastTime" /></span></p>
+                    <p>保险价格: <span id="usageYears"><input type="text" id="price" /></span></p>
+                    <p>赔付率: <span id="usageYears"><input type="text" id="payOut" /></span></p>
+                    <p class="centered-buttons"><span id="usageYears"><input type="button" id="submit"
+                                value="添加保险" /></span> <span id="usageYears"><input type="button" id="cancal"
+                                value="取消" /></span></p>
+                </div>
+            </div>
+        </main>
+        <main>
+            <!-- 弹框内容购买保险 -->
+            <div id="myModal1" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModalBtn1">&times;</span>
+                    <h2>购买保险</h2>
+                    <p>保险名称: <span id="vehicleNumber"><input type="text" id="schemeName1" /></span></p>
+                    <p>投保车辆: <span id="vehicleName">
+                            <!-- <input type="text" id="carId" /> -->
+                            <select id="carId">
+                                <option value="">请选择车辆</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                            </select>
+                        </span></p>
+                    <p style="display: none;"><span id="vehicleNumber"><input type="text" id="schemePrice" /></span>
+                    <p style="display: none;"><span id="vehicleNumber"><input type="text" id="companyAddress" /></span>
+                    </p>
+                    <p style="display: none;"><span id="vehicleNumber"><input type="text" id="schemeId" /></span></p>
+                    <p class="centered-buttons"><span id="usageYears"><input type="button" id="submit1"
+                                value="购买保险" /></span> <span id="usageYears"><input type="button" id="cancal"
+                                value="取消" /></span></p>
+                </div>
+            </div>
+        </main>
+
+
+    </div>
+
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        var queryString = window.location.search;
+        // 创建URLSearchParams对象来解析查询字符串
+        var searchParams = new URLSearchParams(queryString);
+        // 通过调用get()方法获取指定参数的值
+        var username = searchParams.get('username'); // 假设URL中的参数名为username
+        // 存入标识符中
+        var identifier = username; // 将username作为标识符，你可以根据需求进行修改
+        // 从本地存储中获取用户信息
+        var userData = JSON.parse(localStorage.getItem('userData'));
+        // 显示用户信息
+        var userElement = $('.head-right-top ul');
+        userElement.find('li:nth-child(3)').text(userData.userId);
+        userElement.find('li:nth-child(4)').text(userData.username);
+        //获取登录用户信息以及他的地址
+        $.ajax({
+            url: " http://127.0.0.1:8080/user/loginData",
+            type: "get",
+            data: { identifier: identifier },
+            success: function (response) {
+                if (Array.isArray(response)) {
+                    response.forEach(function (data) {
+                        // 将数据插入表格中
+                        // 将数据添加到指定的 <div> 中的 <li> 标签中
+                        var ulElement = $(".head-right-top ul");
+                        ulElement.find("li:nth-child(3)").text(data.userId);
+                        ulElement.find("li:nth-child(4)").text(data.username);
+                    });
+                } else {
+                    console.error("接收到的数据不是数组");
+                }
+            },
+
+            error: function (xhr, status, error) {
+                console.error("请求失败");
+            }
+
+        });
+
+        //添加保险
+        $("#submit").click(function () {
+            // 获取表单数据
+            var schemeName = $('#schemeName').val();
+            var lastTime = $('#lastTime').val();
+            var price = $('#price').val();
+            var payOut = $('#payOut').val();
+            // 创建包含表单数据的对象
+            // alert(userData.username + '' + userData.userId)
+            var formData = {
+                userId: userData.userId,
+                username: userData.username,
+                schemeName: schemeName,
+                lastTime: lastTime,
+                price: price,
+                payOut: payOut
+            };
+            $.ajax({
+                url: " http://127.0.0.1:8080/user/addInsurance",
+                type: "POST",
+                data: formData,
+                success: function (response) {
+                    if (response === "保险添加成功") {
+                        // 注册成功后进行页面跳转到登录页面
+                        alert(response)
+                        window.location.href = "/insurance.html"; // 替换为登录页面的 URL   
+                    } else {
+                        console.error("保险添加失败");
+                        alert(response)
+                    }
+                },
+                error: function (error) {
+                    console.error("添加请求出错:", error);
+                }
+            });
+        })
+        //获取每个公司的保险信息
+        $.ajax({
+
+            url: "http://127.0.0.1:8080/user/insuranceData",
+            type: "get", data: { identifier: userData.userId },
+            success: function (response) {
+                if (Array.isArray(response)) {
+                    // console.log(response)    // 遍历每个公司的方案信息            
+                    response.forEach(function (companyData) {
+                        var companyName = companyData[0];
+                        var row = $("<tr></tr>");
+                        row.append("<td>" + companyName + "</td>");
+                        $("#scheme-table tbody").append(row);          // 首先添加公司名称               
+                        companyData.schemeInfo.forEach(function (schemeInfo) {
+                            row = $("<tr></tr>");
+                            //console.log(schemeInfo[0])
+                            row.append("<td style='display:none;'>" + companyData.companyAddress + "</td>"); // 空的公司名称单元格
+                            row.append("<td></td>"); // 保险公司
+                            // row.append("<td>" + schemeInfo[1] + "</td>"); // 保险
+                            row.append("<td>" + schemeInfo[1] + "</td>"); // 保险公司
+                            row.append("<td>" + schemeInfo[4] + "</td>"); // 保险赔付金额
+                            row.append("<td>" + schemeInfo[5] + "</td>"); // 保险在售状态
+                            row.append("<td>" + '￥' + schemeInfo[3] + '/年' + "</td>"); // 价格/年
+                            var actionCell = $("<td></td>");
+                            var addInsuranceButton = $("<a>")
+                                .attr("onclick", "shopInsurance('" + companyData.companyAddress + "', '" + schemeInfo[1] + "', '" + schemeInfo[3] + "'," + schemeInfo[0] + ")")
+                                .attr("id", "addVehicleLink")
+                                .text("购买保险");
+
+                            actionCell.append(addInsuranceButton);
+                            row.append(actionCell);
+
+                            $("#scheme-table tbody").append(row);
+                        })
+
+                    })
+                }
+            }
+
+        })
+
+    });
+</script>
+<script>
+    // 获取弹框元素  
+    var modal = document.getElementById("myModal");
+    function addInsurance() {
+        modal.style.display = "block";
+        // 获取关闭弹框的按钮  
+        var span = document.getElementById("closeModalBtn");
+        // 当用户点击 <span> (x), 关闭弹框  
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+    }
+</script>
+<script>
+    // 获取弹框元素  
+    var modal1 = document.getElementById("myModal1");
+    function shopInsurance(companyAddress, schemeName, schemePrice, schemeId) {
+        // console.log(companyAddress)
+        // console.log(schemeId)
+        modal1.style.display = "block";
+        $("#schemePrice").val(schemePrice);
+        $("#companyAddress").val(companyAddress);
+        $("#schemeId").val(schemeId);
+        $("#schemeName1").val(schemeName);
+    }
+    // 获取关闭弹框的按钮  
+    var span = document.getElementById("closeModalBtn1");
+    // 当用户点击 <span> (x), 关闭弹框  
+    span.onclick = function () {
+        modal1.style.display = "none";
+    }
+    var userData = JSON.parse(localStorage.getItem('userData'));
+    // 显示用户信息
+    var userElement = $('.head-right-top ul');
+    userElement.find('li:nth-child(3)').text(userData.userId);
+    userElement.find('li:nth-child(4)').text(userData.username);
+    // 监听购买保险按钮的点击事件
+    $("#submit1").click(function () {
+        // 获取表单数据
+        var carId = $("#carId option:selected").val();
+        // 获取表单字段的值
+        var companyAddress = $("#companyAddress").val();
+        var schemeId = $("#schemeId").val();
+        var schemePrice = $("#schemePrice").val();
+        // alert(carId)
+        // alert(schemeId)
+        // alert(schemePrice)
+        // alert(userData.userId)
+        // alert(userData.username)
+        // 创建包含表单数据的对象
+        var formData = {
+            userId: userData.userId,
+            username: userData.username,
+            companyAddress: companyAddress,
+            schemeId: schemeId,
+            carId: carId,
+            schemePrice: schemePrice
+        };
+        $.ajax({
+            url: " http://127.0.0.1:8080/user/shopInsurance",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+                if (response === "购买保险成功") {
+                    alert(response)
+                    window.location.href = "/insurance.html";
+                } else {
+                    console.error("购买保险失败");
+                    alert(response)
+                }
+            },
+            error: function (error) {
+                console.error("购买请求出错:", error);
+            }
+        });
+    })
+
+
+</script>
+
+</html>

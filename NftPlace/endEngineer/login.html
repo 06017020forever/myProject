@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 在head标签中加入以下标签内容 -->
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <form id="loginForm">
+        用户名：<input type="text" name="username" id="username" />
+        密码：<input type="password" name="password" />
+        <input type="submit" value="登录">
+        <a href="register.html" onclick="document.getElementById('myForm').submit();">注册</a>
+    </form>
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#loginForm").submit(function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+            var formData = $(this).serialize(); // 序列化表单数据
+            // var username = $("input[name='username']").val(); // 获取用户名字段的值
+            var username = $("#username").val(); // 获取用户名字段的值
+            $.ajax({
+                url: " http://127.0.0.1:8080/user/login",
+                type: "post",
+                data: formData,
+                success: function (response) {
+                    if (response === "登录成功") {
+                        alert(response)
+                        // 注册成功后进行页面跳转到登录页面
+                        // window.location.href = "/newindex.html"; // 替换为登录页面的 URL
+                        var url = "/newindex.html?username=" + encodeURIComponent(username);
+                        window.location.href = url;
+                    } else {
+                        console.error("登录失败");
+                        alert(response);
+                    }
+                },
+                error: function (error) {
+                    console.error("登录出错:", error);
+                }
+            });
+        });
+    });
+</script>
+
+
+</html>

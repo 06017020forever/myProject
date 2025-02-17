@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./public/css/newindex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>车辆管理系统</title>
+</head>
+
+<body>
+    <div class="head">
+        <div class="head-left">
+            <img src="">
+        </div>
+        <div class="head-right">
+            <div class="head-right-top">
+                <ul>
+                    <li><a href="login.html">退出</a></li>
+                    <li>欢迎使用车辆管理系统!</li>
+                    <li></li>
+                    <li></li>
+                    <input type="button" value="获取金钱">
+                </ul>
+            </div>
+            <div class="head-right-bottom">
+                <ul>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-left">
+        <br>
+        <div class="left_1">
+            <ul>
+                <li><a href="newindex.html" class="selected">首页</a></li>
+                </li>
+            </ul>
+            <ul>
+                <li><a href="car.html">车辆信息</a></li>
+
+                </li>
+            </ul>
+        </div>
+        <div class="left_2">
+            <ul>
+                <li><a href="insurance.html">保险信息</a></li>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="content_right">
+        <div class="control_right_top">
+            <img src="">
+            <span>当前位置&gt;&gt;首页</span>
+            <hr style="width: 100%;">
+        </div>
+        <div class="content_right_content">
+            <span><img src="">&nbsp;搜索&nbsp;&nbsp;&nbsp;公司名称:<input type="text"
+                    placeholder="输入公司名称">&nbsp;&nbsp;公司类型:<select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                </select>&nbsp;&nbsp;<button type="button">查询</button></span>
+        </div>
+        <!-- 注册公司 -->
+        <div class="content_right_content1">
+            <ul>
+                <li><a onclick="registerCompany()" id="addVehicleLink">注册公司</a></li>
+            </ul>
+        </div>
+        <div class="content_table">
+            <table>
+
+
+
+
+            </table>
+            <span><img src="">|<img src=""></span>
+            <span style="float: right; margin-right: 200px;"><button type="button">首页</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">1</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">2</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">3</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">...</button>
+                <button type="button">下一页</button>
+                <button type="button">尾页</button>
+            </span>
+        </div>
+        <main>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModalBtn">&times;</span>
+                    <h2>公司信息</h2>
+                    <p>公司名称: <span id="vehicleNumber"><input type="text" id="userName" /></span></p>
+                    <p>公司密码: <span id="vehicleName"><input type="text" id="password" /></span></p>
+                    <p>公司热线: <span id="usageYears"><input type="text" id="phone" /></span></p>
+                    <p>公司编号: <span id="usageYears"><input type="text" id="companyNo" /></span></p>
+                    <p class="centered-buttons"><span id="usageYears"><input type="button" id="submit"
+                                value="注册公司" /></span> <span id="usageYears"><input type="button" id="cancal"
+                                value="取消" /></span></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+</body>
+<script>
+    // 获取弹框元素  
+    var modal = document.getElementById("myModal");
+    function registerCompany() {
+
+        modal.style.display = "block";
+    }
+    // 获取关闭弹框的按钮  
+    var span = document.getElementById("closeModalBtn");
+    // 当用户点击 <span> (x), 关闭弹框  
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        var queryString = window.location.search;
+        // 创建URLSearchParams对象来解析查询字符串
+        var searchParams = new URLSearchParams(queryString);
+        // 通过调用get()方法获取指定参数的值
+        var username = searchParams.get('username'); // 假设URL中的参数名为username
+        // 存入标识符中
+        var identifier = username; // 将username作为标识符，你可以根据需求进行修改
+        // 从本地存储中获取用户信息
+        var userData = JSON.parse(localStorage.getItem('userData'));
+        // 显示用户信息
+        var userElement = $('.head-right-top ul');
+        userElement.find('li:nth-child(3)').text(userData.userId);
+        userElement.find('li:nth-child(4)').text(userData.username);
+        //获取登录用户信息以及他的地址
+        $.ajax({
+            url: " http://127.0.0.1:8080/user/loginData",
+            type: "get",
+            data: { identifier: identifier },
+            success: function (response) {
+                if (Array.isArray(response)) {
+                    response.forEach(function (data) {
+                        // 将数据插入表格中
+                        // 将数据添加到指定的 <div> 中的 <li> 标签中
+                        var ulElement = $(".head-right-top ul");
+                        ulElement.find("li:nth-child(3)").text(data.userId);
+                        ulElement.find("li:nth-child(4)").text(data.username);
+                        // 假设从服务器获取的用户信息为response
+                        var userData = {
+                            username: data.username,
+                            userId: data.userId
+                        };
+                        // 使用本地存储或会话存储保存用户信息
+                        localStorage.setItem('userData', JSON.stringify(userData));
+                    });
+                } else {
+                    console.error("接收到的数据不是数组");
+                }
+            },
+
+            error: function (xhr, status, error) {
+                console.error("请求失败");
+            }
+
+        });
+
+        //注册公司
+        $("#submit").click(function () {
+            // 获取表单数据
+            var userName = $('#userName').val();
+            var password = $('#password').val();
+            var phone = $('#phone').val();
+            var companyNo = $('#companyNo').val();
+            // 创建包含表单数据的对象
+            // alert(userData.username)
+            var formData = {
+                // userId:userData.userId,
+                username: userData.username,
+                userName: userName,
+                password: password,
+                phone: phone,
+                companyNo: companyNo
+            };
+            $.ajax({
+                url: " http://127.0.0.1:8080/user/registerCompany",
+                type: "POST",
+                data: formData,
+                success: function (response) {
+                    if (response === "公司注册成功") {
+                        // 注册成功后进行页面跳转到登录页面
+                        alert(response)
+                        window.location.href = "/newindex.html"; // 替换为登录页面的 URL   
+                    } else {
+                        console.error("公司注册失败");
+                        alert(response)
+                    }
+                },
+                error: function (error) {
+                    console.error("注册请求出错:", error);
+                }
+            });
+        })
+
+    });
+</script>
+
+</html>

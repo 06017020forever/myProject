@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./public/css/newindex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>车辆管理系统</title>
+</head>
+
+<body>
+    <div class="head">
+        <div class="head-left">
+            <img src="">
+        </div>
+        <div class="head-right">
+            <div class="head-right-top">
+                <ul>
+                    <li><a href="login.html">退出</a></li>
+                    <li>欢迎使用车辆管理系统!</li>
+                    <li></li>
+                    <li></li>
+                    <input type="button" value="获取金钱">
+                </ul>
+            </div>
+            <div class="head-right-bottom">
+                <ul>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                    <li><a href="#"></a>
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-left">
+        <br>
+        <div class="left_1">
+            <ul>
+                <li><a href="newindex.html" class="selected">首页</a></li>
+                </li>
+            </ul>
+            <ul>
+                <li><a href="car.html">车辆信息</a></li>
+
+                </li>
+            </ul>
+        </div>
+        <div class="left_2">
+            <ul>
+                <li><a href="insurance.html">保险信息</a></li>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="content_right">
+        <div class="control_right_top">
+            <img src="">
+            <span>当前位置&gt;&gt;首页</span>
+            <hr style="width: 100%;">
+        </div>
+        <div class="content_right_content">
+            <span><img src="">&nbsp;搜索&nbsp;&nbsp;&nbsp;设备名称:<input type="text"
+                    placeholder="输入设备名称">&nbsp;&nbsp;设备类型:<select>
+                    <option>计算机设备</option>
+                    <option>科学设备</option>
+                    <option>软件设备</option>
+                    <option>智能设备</option>
+                </select>&nbsp;&nbsp;<button type="button">查询</button></span>
+        </div>
+        <div class="content_table">
+            <table>
+                <tr>
+                    <td><input type="checkbox">全选</input></td>
+                    <td>设备类型</td>
+                    <td>设备名称</td>
+                    <td>设备编号</td>
+                    <td>创建日期</td>
+                    <td>设备状态</td>
+                    <td>是否共享</td>
+                    <td>修改设备</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>网络摄像头</td>
+                    <td>计算机网络设备</td>
+                    <td>0001</td>
+                    <td>2021/10/30</td>
+                    <td style="color: red;">设备异常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>智能终端</td>
+                    <td>集成开发版设备</td>
+                    <td>0010</td>
+                    <td>2021/10/30</td>
+                    <td style="color: green;">设备正常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>移动电话</td>
+                    <td>算法与数据设备</td>
+                    <td>0011</td>
+                    <td>2021/10/30</td>
+                    <td style="color: green;">设备正常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>平板电脑</td>
+                    <td>IDE开发设备</td>
+                    <td>0100</td>
+                    <td>2021/10/30</td>
+                    <td style="color: green;">设备正常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>STM32开发班</td>
+                    <td>底层架构设备</td>
+                    <td>0101</td>
+                    <td>2021/10/30</td>
+                    <td style="color: green;">设备正常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>树莓派开发板</td>
+                    <td>链路层设备</td>
+                    <td>0110</td>
+                    <td>2021/10/30</td>
+                    <td style="color: green;">设备正常</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <span><img src="">|<img src=""></span>
+            <span style="float: right; margin-right: 200px;"><button type="button">首页</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">1</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">2</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">3</button>
+                <button type="button" style="border: none; background: none; font-weight: bold;">...</button>
+                <button type="button">下一页</button>
+                <button type="button">尾页</button>
+            </span>
+        </div>
+    </div>
+
+   
+
+</body>
+<script>
+    // 获取弹框元素  
+    var modal = document.getElementById("myModal");
+    function addCar() {
+
+        modal.style.display = "block";
+    }
+    // 获取关闭弹框的按钮  
+    var span = document.getElementById("closeModalBtn");
+    // 当用户点击 <span> (x), 关闭弹框  
+    span.onclick = function () {
+        modal.style.display = "none";
+    }  
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        var queryString = window.location.search;
+        // 创建URLSearchParams对象来解析查询字符串
+        var searchParams = new URLSearchParams(queryString);
+        // 通过调用get()方法获取指定参数的值
+        var username = searchParams.get('username'); // 假设URL中的参数名为username
+        // 存入标识符中
+        var identifier = username; // 将username作为标识符，你可以根据需求进行修改
+        $.ajax({
+            url: " http://127.0.0.1:8080/user/loginData",
+            type: "get",
+            data: { identifier: identifier },
+            success: function (response) {
+                if (Array.isArray(response)) {
+                    response.forEach(function (data) {
+                        // 将数据插入表格中
+                        // 将数据添加到指定的 <div> 中的 <li> 标签中
+                        var ulElement = $(".head-right-top ul");
+                        ulElement.find("li:nth-child(3)").text(data.userId);
+                        ulElement.find("li:nth-child(4)").text(data.username);
+                        // 假设从服务器获取的用户信息为response
+                        var userData = {
+                            username: data.username,
+                            userId: data.userId
+                        };
+                        // 使用本地存储或会话存储保存用户信息
+                        localStorage.setItem('userData', JSON.stringify(userData));
+                    });
+                } else {
+                    console.error("接收到的数据不是数组");
+                }
+            },
+
+            error: function (xhr, status, error) {
+                console.error("请求失败");
+            }
+
+        });
+    });
+         // 从本地存储中获取用户信息
+         var userData = JSON.parse(localStorage.getItem('userData'));
+    // 显示用户信息
+    var userElement = $('.head-right-top ul');
+    userElement.find('li:nth-child(3)').text(userData.userId);
+    userElement.find('li:nth-child(4)').text(userData.username);
+
+</script>
+</html>

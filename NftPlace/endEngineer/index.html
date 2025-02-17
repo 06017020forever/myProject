@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 在head标签中加入以下标签内容 -->
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table id="students-table">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>PrivateKey</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: " http://127.0.0.1:8080/user/pageData",
+            type: "get",
+            success: function (response) {
+                if (Array.isArray(response)) {
+                    response.forEach(function (data) {
+                        // 将数据插入表格中
+                        var row = $("<tr></tr>");
+                        row.append("<td>" + data.userId + "</td>");
+                        row.append("<td>" + data.username + "</td>");
+                        row.append("<td>" + data.password + "</td>");
+                        row.append("<td>" + data.privateKey + "</td>");
+                        $("#students-table tbody").append(row);
+                    });
+                } else {
+                    console.error("接收到的数据不是数组");
+                }
+            },
+
+            error: function (xhr, status, error) {
+                console.error("请求失败");
+            }
+
+        });
+    });
+</script>
+
+</html>
