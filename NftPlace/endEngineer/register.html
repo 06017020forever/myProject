@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <form id="registrationForm">
+        用户名：<input type="text" name="username" /><br>
+        密码：<input type="password" name="password" /><br>
+        性别：<input type="text" name="gender" /><br>
+        电话：<input type="text" name="phone" /><br>
+        <input type="submit" value="注册">
+    </form>
+  
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#registrationForm").submit(function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+            var formData = $(this).serialize(); // 序列化表单数据  
+            $.ajax({
+                url: " http://127.0.0.1:8080/user/register",
+                type: "POST",
+                data: formData,
+                success: function (response) {
+                    if (response === "注册成功") {
+                        // 注册成功后进行页面跳转到登录页面
+                        alert(response)
+                        window.location.href = "/login.html"; // 替换为登录页面的 URL
+                    } else if (response === '用户已经存在,请重新输入') {
+                        alert(response)
+                    } else {
+                        console.error("注册失败");
+                        alert(response)
+                    }
+                },
+                error: function (error) {
+                    console.error("注册请求出错:", error);
+                }
+            });
+        });
+    });
+</script>
+
+</html>
